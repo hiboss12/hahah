@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "RoGold - Level Up Roblox",
+  "author": "alexop",
+  "version": "1.7.11",
+  "description": "Your new and improved Roblox experience",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.roblox.com/*",
+    "https://authorize.roblox.com/*",
+    "https://apis.roblox.com/*",
+    "https://create.roblox.com/*",
+    "http://localhost:8765/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icons/grey_16x16.png",
+    "48": "icons/grey_48x48.png",
+    "128": "icons/grey_128x128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.roblox.com/*"],
+      "js": ["relay.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    },
+    {
+      "matches": ["https://www.roblox.com/*"],
+      "js": ["larp.js"],
+      "run_at": "document_start",
+      "world": "MAIN",
+      "all_frames": false
+    },
+    {
+      "matches": ["https://authorize.roblox.com/*", "https://apis.roblox.com/*", "https://create.roblox.com/*"],
+      "js": ["auth-spoof.js"],
+      "run_at": "document_start",
+      "world": "MAIN",
+      "all_frames": false
+    }
+  ]
+}
